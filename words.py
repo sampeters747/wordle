@@ -20,9 +20,14 @@ def create_wordlist(file_location: str, word_filter: Callable[[str], bool]) -> L
         f.writelines(target_word_lines)
     return target_words
 
-def import_5lwords(file_location: str="5lwords.txt") -> List[str]:
+def import_wordlist(file_location: str="5lwords.txt") -> List[str]:
     with open(file_location, "r") as f:
         words = f.readlines()
     words = [word.strip() for word in words]
     return words
 
+allowed_guesses = import_wordlist("wordle-allowed-guesses.txt")
+answers = import_wordlist("wordle-answers-alphabetical.txt")
+print(len(allowed_guesses), len(answers))
+all_words = allowed_guesses + answers
+print(len(all_words))
